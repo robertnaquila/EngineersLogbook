@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button left routerLink="/" routerDirection="root" fill="clear" slot="primary">
+        Logout<ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="body">
+
+  <ion-card class="card">
+    <ion-card-content >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+              <ion-item class="item">
+                <ion-label position="stacked">Operator <ion-icon name="contact"></ion-icon></ion-label>
+                <ion-text>{{database.current.user.name}}</ion-text>
+              </ion-item>
+              <ion-item class="item">
+                <ion-label position="stacked">Licence Type <ion-icon name="car"></ion-icon></ion-label>
+                <ion-text>{{database.current.user.licence_type}}</ion-text>
+              </ion-item>
+              <ion-item class="item">
+                <ion-label position="stacked">Licence Number <ion-icon name="create"></ion-icon></ion-label>
+                <ion-text>{{database.current.user.licence_num}}</ion-text>  
+              </ion-item>
+ 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,44 @@
+
+ion-content {
+
+//  opacity: 0;   // animejs will fade this in
+  --padding-start: 10%;
+  --padding-end: 10%;
+  --padding-top: 10%;
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+
+  // https://www.cssmatic.com/gradient-generator
+  //background: -moz-linear-gradient(left, rgba(33,53,9,1)0%,  rgba(104,133,81,1)  100%);
+  //--ion-background-color: none;
+  //--ion-text-color:#000000;
+    
+  .rounded {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .textfield {
+    --background: transparent;
+    text-align: center;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+  }
+
+  .icon {
+    font-size: 128px;
+  }
+
+  .ion-text-center {
+    text-align: center;
+  }
+
+  .padding-top-bottom {
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
+
+}

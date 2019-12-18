@@ -1,0 +1,318 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <div padding>
+    <ion-segment [(ngModel)]="opt">
+      <ion-segment-button value="driverSignUp" (ionSelect)="signUpDriver()" checked>Driver</ion-segment-button>
+      <ion-segment-button value="commanderSignUp" (ionSelect)="signUpCommander()">Commander</ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="opt">
+
+    <!-- SIGN UP FOR DRIVER ------------->
+    <form class="form" [formGroup]="validationsForm"  (ngSubmit)="tryRegister(validationsForm.value)" *ngSwitchCase="'driverSignUp'">
+
+      <!-- Rank ------------------->
+      <ion-item no-padding>
+        <ion-label floating>Rank</ion-label>
+        <ion-select formControlName="rank">
+          <ion-select-option value="PTE">PTE</ion-select-option>
+          <ion-select-option value="LCP">LCP</ion-select-option>
+          <ion-select-option value="CPL">CPL</ion-select-option>
+          <ion-select-option value="CFC">CFC</ion-select-option>
+          <ion-select-option value="3SG">3SG</ion-select-option>
+          <ion-select-option value="2SG">2SG</ion-select-option>
+          <ion-select-option value="1SG">1SG</ion-select-option>
+          <ion-select-option value="SSG">SSG</ion-select-option>
+          <ion-select-option value="MSG">MSG</ion-select-option>
+          <ion-select-option value="3WO">3WO</ion-select-option>
+          <ion-select-option value="2WO">2WO</ion-select-option>
+          <ion-select-option value="1WO">1WO</ion-select-option>
+          <ion-select-option value="2LT">2LT</ion-select-option>
+          <ion-select-option value="LTA">LTA</ion-select-option>
+          <ion-select-option value="CPT">CPT</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.rank">
+          <div class="error-message" *ngIf="validationsForm.get('rank').hasError(validation.type) && (validationsForm.get('rank').dirty || validationsForm.get('rank').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Name ------------------->  
+      <ion-item no-padding>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+          <div class="error-message" *ngIf="validationsForm.get('name').hasError(validation.type) && (validationsForm.get('name').dirty || validationsForm.get('name').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Email ------------------->
+      <ion-item no-padding>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.email">
+          <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Unit ------------------->
+      <ion-item no-padding>
+        <ion-label floating>Unit</ion-label>
+        <ion-select formControlName="unit">
+          <ion-select-option value="30SCE">30 SCE</ion-select-option>
+          <ion-select-option value="35SCE" selected>35 SCE</ion-select-option>
+          <ion-select-option value="38SCE">38 SCE</ion-select-option>
+          <ion-select-option value="HQARMCEG">HQ ARMCEG</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.unit">
+          <div class="error-message" *ngIf="validationsForm.get('unit').hasError(validation.type) && (validationsForm.get('unit').dirty || validationsForm.get('unit').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Company/Platoon ------------------->
+      <ion-item no-padding>  
+        <ion-label floating>Company</ion-label>
+        <ion-select formControlName="company">
+          <ion-select-option value="Alpha">Alpha</ion-select-option>
+          <ion-select-option value="Bravo">Bravo</ion-select-option>
+          <ion-select-option value="Charlie">Charlie</ion-select-option>
+          <ion-select-option value="Boat">Boat</ion-select-option>
+          <ion-select-option value="Support">Support</ion-select-option>
+          <ion-select-option value="ME">ME</ion-select-option>
+          <ion-select-option value="MEC">MEC</ion-select-option>
+          <ion-select-option value="HQ">HQ</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company">
+          <div class="error-message" *ngIf="validationsForm.get('company').hasError(validation.type) && (validationsForm.get('company').dirty || validationsForm.get('company').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      
+      <!-- Password ------------------->
+      <ion-item no-padding>
+        <ion-label  position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message" *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+         
+      <ion-item no-padding>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.confirmPassword">
+          <div class="error-message" *ngIf="validationsForm.get('confirmPassword').hasError(validation.type) && (validationsForm.get('confirmPassword').dirty || validationsForm.get('confirmPassword').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Licence ------------------->
+      <ion-item no-padding>
+        <ion-label position="floating">License Number</ion-label>
+        <ion-input type="text" formControlName="licenseNum"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.licenseNum">
+          <div class="error-message" *ngIf="validationsForm.get('licenseNum').hasError(validation.type) && (validationsForm.get('licenseNum').dirty || validationsForm.get('licenseNum').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      
+      <ion-item no-padding>
+        <ion-label floating >License Type</ion-label>
+        <ion-select formControlName="licenseType">
+          <ion-select-option value="a">A</ion-select-option>
+          <ion-select-option value="b">B</ion-select-option>
+          <ion-select-option value="c">C</ion-select-option>
+          <ion-select-option value="d">D</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.licenseType">
+          <div class="error-message" *ngIf="validationsForm.get('licenseType').hasError(validation.type) && (validationsForm.get('licenseType').dirty || validationsForm.get('licenseType').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Submit Button ------------------->  
+      <BR><BR>
+      <ion-button expand="block" class="submit-btn" type="submit" [disabled]="!validationsForm.valid">Sign up</ion-button>
+      <label class="error-message">{{errorMessage}}</label>
+      <label class="success-message">{{successMessage}}</label>
+  
+      <!-- Cancel Button ------------------->
+      <ion-button expand="block" routerLink="/" fill="outline">Cancel</ion-button>
+  
+    </form>
+
+    <!-- SIGN UP FOR COMMANDER ------------->
+    <form class="form" [formGroup]="validationsForm"  (ngSubmit)="tryRegister(validationsForm.value)" *ngSwitchCase="'commanderSignUp'">
+
+      <!-- Rank ------------------->
+      <ion-item no-padding>
+        <ion-label floating>Rank</ion-label>
+        <ion-select formControlName="rank">
+          <ion-select-option value="PTE">PTE</ion-select-option>
+          <ion-select-option value="LCP">LCP</ion-select-option>
+          <ion-select-option value="CPL">CPL</ion-select-option>
+          <ion-select-option value="CFC">CFC</ion-select-option>
+          <ion-select-option value="3SG">3SG</ion-select-option>
+          <ion-select-option value="2SG">2SG</ion-select-option>
+          <ion-select-option value="1SG">1SG</ion-select-option>
+          <ion-select-option value="SSG">SSG</ion-select-option>
+          <ion-select-option value="MSG">MSG</ion-select-option>
+          <ion-select-option value="3WO">3WO</ion-select-option>
+          <ion-select-option value="2WO">2WO</ion-select-option>
+          <ion-select-option value="1WO">1WO</ion-select-option>
+          <ion-select-option value="2LT">2LT</ion-select-option>
+          <ion-select-option value="LTA">LTA</ion-select-option>
+          <ion-select-option value="CPT">CPT</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.rank">
+          <div class="error-message" *ngIf="validationsForm.get('rank').hasError(validation.type) && (validationsForm.get('rank').dirty || validationsForm.get('rank').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Name ------------------->
+      <ion-item no-padding>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+          <div class="error-message" *ngIf="validationsForm.get('name').hasError(validation.type) && (validationsForm.get('name').dirty || validationsForm.get('name').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Email ------------------->
+      <ion-item no-padding>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.email">
+          <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Unit ------------------->
+      <ion-item no-padding>
+        <ion-label floating>Unit</ion-label>
+        <ion-select formControlName="unit">
+          <ion-select-option value="30SCE">30 SCE</ion-select-option>
+          <ion-select-option value="35SCE" selected>35 SCE</ion-select-option>
+          <ion-select-option value="38SCE">38 SCE</ion-select-option>
+          <ion-select-option value="HQARMCEG">HQ ARMCEG</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.unit">
+          <div class="error-message" *ngIf="validationsForm.get('unit').hasError(validation.type) && (validationsForm.get('unit').dirty || validationsForm.get('unit').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+  
+      <!-- Company/Platoon ------------------->
+      <ion-item no-padding>  
+        <ion-label floating>Company</ion-label>
+        <ion-select formControlName="company">
+          <ion-select-option value="Alpha">Alpha</ion-select-option>
+          <ion-select-option value="Bravo">Bravo</ion-select-option>
+          <ion-select-option value="Charlie">Charlie</ion-select-option>
+          <ion-select-option value="Boat">Boat</ion-select-option>
+          <ion-select-option value="Support">Support</ion-select-option>
+          <ion-select-option value="ME">ME</ion-select-option>
+          <ion-select-option value="MEC">MEC</ion-select-option>
+          <ion-select-option value="HQ">HQ</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company">
+          <div class="error-message" *ngIf="validationsForm.get('company').hasError(validation.type) && (validationsForm.get('company').dirty || validationsForm.get('company').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      
+      <!-- Password ------------------->
+      <ion-item no-padding>
+        <ion-label  position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message" *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+         
+      <ion-item no-padding>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.confirmPassword">
+          <div class="error-message" *ngIf="validationsForm.get('confirmPassword').hasError(validation.type) && (validationsForm.get('confirmPassword').dirty || validationsForm.get('confirmPassword').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+            
+      <!-- Submit Button ------------------->  
+      <BR><BR>
+      <ion-button expand="block" class="submit-btn" type="submit"  [disabled]="!validationsForm.valid">Sign up</ion-button>
+      <label class="error-message">{{errorMessage}}</label>
+      <label class="success-message">{{successMessage}}</label>
+  
+      <!-- Cancel Button ------------------->
+      <ion-button expand="block" routerLink="/" fill="outline">Cancel</ion-button>
+  
+    </form>
+
+  </div>
+
+</ion-content>

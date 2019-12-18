@@ -1,0 +1,7 @@
+.vertical-align-content > *
+{
+     display: flex!important;
+     align-content: center!important;
+     align-items: center!important;  // vertical alignment
+     justify-content: center !important;  // horizontal alignment
+}

@@ -1,0 +1,41 @@
+
+<ion-content padding id='login-content'>
+
+  <div class="ion-text-center padding-top-bottom">
+    <ion-icon class="icon" src="assets/login1.svg"></ion-icon>
+  </div>
+  <form class="form" [formGroup]="validationsForm"  (ngSubmit)="loginUser(validationsForm.value)">
+    <ion-item class="textfield" no-padding id='email'>
+      <ion-input placeholder="Email" type="email" formControlName="email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item class="textfield" fill="outline" no-padding id='password'>
+      <ion-input placeholder="Password" type="password" formControlName="password" class="form-control" required ></ion-input>
+    </ion-item>
+
+    <label class="error-message">{{errorMessage}}</label>
+
+    <ion-button class="submit-btn" type="submit" fill="solid" expand="block" [disabled]="!validationsForm.valid" >Login</ion-button>
+    
+  </form>
+  <ion-button class='signup-btn' fill="outline" routerLink="/signup" expand="block">Sign up</ion-button>
+
+      <ion-list>
+        <ion-item lines="full">
+          <ion-icon slot="start" name="moon"></ion-icon>
+          <ion-label>
+            Toggle Dark Theme
+          </ion-label>
+          <ion-toggle [(ngModel)]="toggle_dark_mode" id="themeToggle" slot="end"></ion-toggle>
+        </ion-item>
+      </ion-list>
+
+
+  <!-- FOR DEBUGGING ONLY -->
+
+  <div id='debug-stuff' style="position:relative; top:5em;" *ngIf="debugging_mode">
+    <ion-button size='small' fill="outline" (click)="debug('driver')" clear>Debug Driver</ion-button>
+    <ion-button size='small' fill="outline" (click)="debug('commander')" clear>Debug Commander</ion-button>
+    <ion-button size='small' fill="outline" (click)="debug('admin')" clear>Debug Admin</ion-button>
+  </div>
+</ion-content>
